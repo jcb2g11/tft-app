@@ -1,9 +1,9 @@
 services:
   - type: web
-    name: tft-app
+    name: tft-app-backend
     env: go
-    buildCommand: cd tft-app && go build -o main .
-    startCommand: ./main
+    buildCommand: cd tft-app/tft-app && go mod tidy && go build -o main .
+    startCommand: cd tft-app/tft-app && ./main
     envVars:
       - key: PORT
         value: 8080
