@@ -1,7 +1,9 @@
 // src/services/api.js
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8080';
+const API_URL = process.env.NODE_ENV === 'production' 
+  ? 'https://tft-app-qjx6.onrender.com'  // Replace with actual API URL
+  : 'http://localhost:8080';
 
 export const fetchChallengers = async () => {
   try {
