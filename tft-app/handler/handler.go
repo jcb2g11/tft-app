@@ -55,9 +55,10 @@ func MasterHandler(w http.ResponseWriter, r *http.Request) {
 // CORS Middleware
 func EnableCORS(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Access-Control-Allow-Origin", "*") // Allow all origins (unsafe for production)
-		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
-		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+		w.Header().Set("Access-Control-Allow-Origin", "https://jcb2g11.github.io")    // Allow only your frontend
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")          // Allow only necessary methods
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization") // Allow necessary headers
+		w.Header().Set("Access-Control-Allow-Credentials", "true")
 
 		if r.Method == "OPTIONS" {
 			w.WriteHeader(http.StatusOK)
