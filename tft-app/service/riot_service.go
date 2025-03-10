@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"os"
 	"tft-app/models"
 )
 
@@ -14,10 +15,15 @@ const (
 	grandmasterURL = "https://euw1.api.riotgames.com/tft/league/v1/grandmaster"
 	masterURL      = "https://euw1.api.riotgames.com/tft/league/v1/master"
 	// Riot API key (ensure you set this up as an env variable)
-	apiKey = "RGAPI-4521fb89-ac56-4a00-b16c-2028deadb489"
 	// Default page size
 	pageSize = 25
 )
+
+var apiKey = "" // Declare a variable
+
+func init() {
+	apiKey = os.Getenv("RIOT_API_KEY") // Set the Riot API key from environment variable
+}
 
 func FetchLeagueData(url string) ([]models.LeagueItemWithName, error) {
 	// Construct URL with pagination parameters
